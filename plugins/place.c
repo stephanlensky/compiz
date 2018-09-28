@@ -824,17 +824,24 @@ placeRandom (CompWindow *w,
 	     int	*y)
 {
     int remainX, remainY;
+    
+    int borderX = 192;
+    int borderY = 108;
 
     *x = workArea->x;
     *y = workArea->y;
 
-    remainX = workArea->width - w->serverWidth;
+    remainX = workArea->width - w->serverWidth - (borderX * 2);
     if (remainX > 0)
 	*x += rand () % remainX;
 
-    remainY = workArea->height - w->serverHeight;
+    remainY = workArea->height - w->serverHeight - (borderY * 2);
     if (remainY > 0)
 	*y += rand () % remainY;
+    
+    *x += borderX;
+    *y += borderY;
+
 }
 
 static void
